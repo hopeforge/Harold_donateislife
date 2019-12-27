@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta http-equiv="Content-Language" content="pt-br">
+<meta http-equiv="Content-Security-Policy" content="connect-src 'self'">
+
+<title>Chat-Health</title>
+<link rel="stylesheet" href="style.css" media="screen">
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container container-chat-all">
+		<div class="row header-chat container-all-chat">
+			<div class="col-6 container-text-header">
+				<p class="header-title">Mari</p>
+				<p class="header-subtitle">Graacc - Assistente Virtual para
+					doações</p>
+			</div>
+
+			<div class="col-6 container-button-header" id="button-header">
+
+			</div>
+
+		</div>
+		<div id="messages">
+			<div class="row row-response-message" id="row-typing">
+				<img class="logo" src="./assets/img/bot.png">
+				<div id="container-time-text" class="col-10">
+					<div class="typing-indicator">
+						<span class="typing"></span> <span class="typing"></span> <span
+							class="typing"></span>
+					</div>
+					<div class="divider"></div>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="action-bar">
+			<div class="col-10 col-sm-10 col-md-11  input-message" id="input"
+				data-ph="Digite aqui..." contenteditable="false"></div>
+			<div class="col-2 col-sm-2 col-md-1 send-button" id="s-button">
+				<i class=" material-icons ico "> send </i>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+	<script src="app.js"></script>
+
+	<script type="text/javascript"
+		src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js">
+		
+	</script>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous">
+		
+	</script>
+
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous">
+		
+	</script>
+	<script type="html/template" id="textTpl">
+		
+
+	<div class="row row-response-message">
+	<img class="logo" src="<%= avatar %>">
+	<div id="container-time-text5" class="col-10">
+		<div class="response-messages">
+			<%= text %>
+		</div>
+
+		<div class="divider"></div>
+		<div class="time-container">
+			<p class="time-text"><%= time %></p>
+		</div>
+	</div>
+	</div>
+	</script>
+	<script type="html/template" id="baseTpl">
+	<div class="row row-response-message">
+	<img class="logo" src="<%= avatar %>">
+	<div id="container-time-text5" class="col-10">
+
+		<%= templateResult %>
+
+		<div class="divider"></div>
+		<div class="time-container">
+			<p class="time-text"><%= time %></p>
+		</div>
+	</div>
+	</div>
+	</script>
+
+	<script type="html/template" id="buttonsTpl">
+	<div class="row row-response-message">
+	<img class="logo" src="<%= avatar %>">
+	<div id="container-time-text5" class="col-10">
+
+		<div class="row row-response-message">  		
+  		<% _(buttons).each(function(b) { %>
+    		<button  class="button-response button" data-execute="<%= b.execute %>" data-label="<%= b.label %>" >
+				<%= b.label %>
+			</button>      	
+  		<% }) %>
+		</div>
+
+		<div class="divider"></div>
+		<div class="time-container">
+			<p class="time-text"><%= time %></p>
+		</div>
+	</div>
+	</div>
+	</script>
+
+	<script type="text/template" id="tplSendMessage">
+	<div class="row row-send-message" id="row-7">
+	<div id="container-time-text7" class="col-10 container-time-text-send">
+		<div class="send-messages "><%= text %></div>
+		<div class="time-container" id="time-7">
+			<p class="time-text"><%= time %></p>
+		</div>
+	</div>
+	<img class="logo"  src="./assets/img/user.png">
+	</div>
+	</script>
+</body>
+</html>

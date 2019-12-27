@@ -1,0 +1,27 @@
+<nb-card>
+    <nb-card-header _ngcontent-ufa-c68="">Digite a Hashtag #</nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <input _ngcontent-ufa-c68="" fullwidth="" nbinput="" [(ngModel)]="message" placeholder="Texto" type="text" class="input-full-width size-medium shape-rectangle">
+      </div>
+      <div class="col-sm-3">
+          <button _ngcontent-ufa-c71="" (click)="buscarHash()" hero="" nbbutton="" _nghost-ufa-c15="" class="appearance-hero size-medium status-primary shape-rectangle ng-star-inserted transitions" aria-disabled="false" tabindex="0">Buscar</button>
+      </div>
+      <div class="col-sm-2">
+          <button style="font-size:10pt;" _ngcontent-ufa-c71="" *ngIf="hasResult()"  (click)="sendDirect()"  hero="" nbbutton="" _nghost-ufa-c15="" class="appearance-hero size-medium status-success shape-rectangle ng-star-inserted transitions" aria-disabled="false" tabindex="0">Enviar Direct <i class="email-outline"></i></button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card *ngIf="isResult">
+  <nb-card-header>
+    Resultado
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+  
